@@ -4,6 +4,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/config_struts"/>
         <property name="context-root" value="/ppp-mysql-web"/>
         <property name="java-output-path" value="/ppp-mysql-web/src/main/webapp/WEB-INF/classes"/>
     </wb-module>
