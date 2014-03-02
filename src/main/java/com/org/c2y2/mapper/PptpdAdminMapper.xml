@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- vpn管理员 -->
+<mapper namespace="com.org.c2y2.mapper.PptpdAdminMapper">
+
+	<!-- 添加 -->
+	<insert id="insert"   parameterType="PptpdAdmin"  useGeneratedKeys="true" keyProperty="id"       >
+		INSERT INTO PPTPD_ADMIN(USERNAME,PASSWORD,STATUS,USERTYPE,MEMO) VALUES (#{username},#{password},#{status},#{usertype},#{memo})
+	</insert>
+
+	<!-- 按条件查询多条（不分页） -->
+	<select id="findByEntity" parameterType="PptpdAdmin" resultType="PptpdAdmin">
+		SELECT TAB.ID,TAB.USERNAME,TAB.PASSWORD,TAB.STATUS,USERTYPE,TAB.MEMO
+			FROM PPTPD_ADMIN TAB
+			<where>
+				<if test="username!=null and username!='' ">AND TAB.USERNAME = #{username}</if>
+				<if test="status!=null">AND TAB.STATUS = #{status}</if>
+				<if test="usertype!=null">AND TAB.USERTYPE = #{usertype}</if>
+			</where>
+		ORDER BY TAB.ID DESC
+	</select>
+
+	<!-- 按ID查询一条 -->
+	<select id="findById" parameterType="int" resultType="PptpdAdmin">
+		SELECT TAB.ID,TAB.USERNAME,TAB.PASSWORD,TAB.STATUS,USERTYPE,TAB.MEMO
+			FROM PPTPD_ADMIN TAB WHERE TAB.ID=#{id} ORDER BY TAB.ID DESC
+	</select>
+
+	<!-- 按ID删除一条 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM PPTPD_ADMIN WHERE ID=#{id}
+	</delete>
+
+	<!-- 按ID修改 -->
+	<update id="update" parameterType="PptpdAdmin">
+		UPDATE PPTPD_ADMIN TAB
+		<set>
+			<if test="username!=null and username!='' ">TAB.USERNAME = #{username},</if>
+			<if test="status!=null">TAB.STATUS = #{status},</if>
+			<if test="usertype!=null">TAB.USERTYPE = #{usertype},</if>
+		</set>
+		WHERE TAB.ID = #{id}
+	</update>
+
+
+	<!-- 按条件查询多条（分页） -->
+	<select id="findByEntityOnPage" parameterType="PptpdAdmin" resultType="PptpdAdmin">
+		SELECT TAB.ID,TAB.USERNAME,TAB.PASSWORD,TAB.STATUS,USERTYPE,TAB.MEMO
+			FROM PPTPD_ADMIN TAB
+			<where>
+				<if test="username!=null and username!='' ">AND TAB.USERNAME = #{username}</if>
+				<if test="status!=null">AND TAB.STATUS = #{status}</if>
+				<if test="usertype!=null">AND TAB.USERTYPE = #{usertype}</if>
+			</where>
+		 ORDER BY TAB.ID DESC
+		 LIMIT #{pageStart}, #{pageSize}
+	</select>
+
+	<!-- 按条件查询总数（用于分页） -->
+	<select id="findByEntityOnPageCount" parameterType="PptpdAdmin" resultType="int">
+		SELECT COUNT(1) 
+			FROM PPTPD_ADMIN TAB
+			<where>
+				<if test="username!=null and username!='' ">AND TAB.USERNAME = #{username}</if>
+				<if test="status!=null">AND TAB.STATUS = #{status}</if>
+				<if test="usertype!=null">AND TAB.USERTYPE = #{usertype}</if>
+			</where>
+	</select>
+
+</mapper>
