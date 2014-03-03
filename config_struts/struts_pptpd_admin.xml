@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="pptpdAdmin" extends="global" namespace="/pptpd/admin">
+		<action name="PptpdAdminAction_*" class="com.org.c2y2.action.PptpdAdminAction" method="{1}">
+			<result name="success_toAddAdmin">/WEB-INF/admin/add_pptpd_admin_user.jsp</result>
+			<result name="success_insertPptpdAdmin">queryPptpdAdmin.action</result>
+			<result name="success_insertPptpdAdmin">/WEB-INF/admin/list_pptpd_admin_user.jsp</result>
+			<result name="return_pptpdSupperQuery" type="redirect">PptpdAdminAction_queryPptpdAdmin.action</result>
+			<result name="return_LoginIndex">/WEB-INF/admin/pptpd_admin_login.jsp</result>
+		</action>
+	</package>
+</struts>

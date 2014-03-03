@@ -11,6 +11,10 @@ public class PptpdUser extends Entity{
 	 */
 	private Integer id;
 	/**
+	 * 管理员id
+	 */
+	private Integer mrgid;
+	/**
 	 * 用户姓名
 	 */
 	private String username;
@@ -42,6 +46,14 @@ public class PptpdUser extends Entity{
 	
 	
 	
+	public Integer getMrgid() {
+		return mrgid;
+	}
+
+	public void setMrgid(Integer mrgid) {
+		this.mrgid = mrgid;
+	}
+
 	public PptpdUser() {
 		super();
 	}

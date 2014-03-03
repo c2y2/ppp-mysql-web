@@ -42,7 +42,7 @@ public class BaseAction  extends ActionSupport implements ServletRequestAware,Se
 	
 	public void setServletRequest(HttpServletRequest httpServletRequest) {
 		this.httpServletRequest = httpServletRequest;
-		this.session = this.httpServletRequest.getSession();
+		this.session = this.httpServletRequest.getSession(true);
 	}	
 	
 }

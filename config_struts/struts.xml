@@ -26,10 +26,9 @@
 
 		<!-- 登录页面 -->
 		<action name="BaseAction_*" class="com.org.c2y2.base.BaseAction" method="{1}">
-			<result name="index">/index.jsp</result>
+			<result name="index">/WEB-INF/admin/pptpd_admin_login.jsp</result>
 		</action>
 	</package>
 	
-	<!-- 系统模块配置文件 
-	<include file="com/jinxinol/basic/system/config/struts_basic_system.xml" />-->
+	<include file="struts_pptpd_admin.xml" />
 </struts>

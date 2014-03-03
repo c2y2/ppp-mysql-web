@@ -33,6 +33,9 @@ public class PptpdAdmin extends Entity{
 	 */
 	private String memo;
 	
+	public final static Integer supperAdmin=1;
+	public final static Integer generalAdmin=2;
+	
 	
 	public PptpdAdmin() {
 		super();
