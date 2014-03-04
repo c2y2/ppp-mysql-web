@@ -9,33 +9,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查询管理员</title>
+  <link href="<%=basePath %>css/main.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<form action="<%=basePath%>pptpd/admin/PptpdAdminAction_queryPptpdAdmin.action">
-		<div>
-			<table>
+		<div align="left">
+			<table >
 				<tr>
-					<th align="right">管理员姓名</th>
+					<td align="right">管理员姓名</td>
 					<td><input name="pptpdAdmin.username" id="username" value="${pptpdAdmin.username }"/></td>
-					<th align="right">用户类型</th>
+					<td align="right">用户类型</td>
 					<td>
 						<select style="width:176px" name="pptpdAdmin.usertype" id="usertype">
-							<!-- <option value="1">超级管理员</option> -->
-							<option value="2" selected="selected">普通管理员</option>
+						 	<option value="">选择管理员类型</option> 
+						 	<option value="1">超级管理员</option> 
+							<option value="2">普通管理员</option>
 						</select>
 					</td>
-					<th align="right">启用状态</th>
+					<td align="right">启用状态</td>
 					<td>
 						<select style="width:176px" name="pptpdAdmin.status" id="status">
+							<option value="">启用状态</option>
 							<option value="0">启用</option>
-							<option value="1" selected="selected">禁用</option>
+							<option value="1">禁用</option>
 						</select>
 					</td>
 				</tr>
 			</table>
 		</div>
-		<div>
-			<table>
+		<div align="center">
+			<span>
+				<input type="submit" class="btn" value="查询" />
+			</span>		
+		</div>
+		<div align="left">
+			<table width="60%" board="1px">
 				<thead>
 					<tr>
 						<th>管理员姓名</th>

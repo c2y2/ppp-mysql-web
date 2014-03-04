@@ -31,4 +31,5 @@
 	</package>
 	
 	<include file="struts_pptpd_admin.xml" />
+	<include file="struts_pptpd_user.xml" />
 </struts>

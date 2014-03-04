@@ -23,7 +23,7 @@ public class PptpdUser extends Entity{
 	 */
 	private String password;
 	/**
-	 * 用户状态
+	 * 用户状态(0,未登录，1，登录中，)
 	 */
 	private Integer status;
 	/**
@@ -42,10 +42,34 @@ public class PptpdUser extends Entity{
 	 * 截止时间
 	 */
 	private Date enddate;
+	/**
+	 * 使用时间个月
+	 */
+	private Integer count;
+	/**
+	 * 用户备注
+	 */
+	private String memo;
 	
 	
 	
 	
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
 	public Integer getMrgid() {
 		return mrgid;
 	}

@@ -23,7 +23,6 @@ public class PptpdAdminAction extends BaseAction {
 	@Resource IPptpdAdminService pptpdAdminService;
 	
 	
-	
 	/**
 	 * 
 	 * @name  pptpdAdminLogin
@@ -41,13 +40,9 @@ public class PptpdAdminAction extends BaseAction {
 			}else{
 				pptpdAdmin = pptpdAdminService.pptpdAdminLogin(pptpdAdmin);
 				if(pptpdAdmin!=null){
-					if(pptpdAdmin.getUsertype()!=null && pptpdAdmin.getUsertype()==PptpdAdmin.supperAdmin){
+					if(pptpdAdmin.getUsertype()!=null){
 						session.setAttribute("pptpdAdmin", pptpdAdmin);
-						return "return_pptpdSupperQuery";//跳转超级管理员查询页面
-					}
-					if(pptpdAdmin.getUsertype()!=null && pptpdAdmin.getUsertype()==PptpdAdmin.generalAdmin){
-						session.setAttribute("pptpdAdmin", pptpdAdmin);
-						return "return_pptpdGeneralQuery";
+						return "return_pptpdAdminQuery";
 					}
 				}else{
 					return "return_LoginIndex";
@@ -116,7 +111,7 @@ public class PptpdAdminAction extends BaseAction {
 			//默认仅仅只添加普通管理员
 			pm = pptpdAdminService.findOnPage(pptpdAdmin, pm);
 			log.info("查询管理员成功");
-			return "success_insertPptpdAdmin";
+			return "success_queryPptpdAdmin";
 		} catch (Exception e) {
 			log.debug("查询管理员异常", e);
 			return ERROR;

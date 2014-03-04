@@ -4,7 +4,7 @@
 <mapper namespace="com.org.c2y2.mapper.PptpdAdminMapper">
 
 	<!-- 添加 -->
-	<insert id="insert"   parameterType="PptpdAdmin"  useGeneratedKeys="true" keyProperty="id"       >
+	<insert id="insert"  parameterType="PptpdAdmin"  useGeneratedKeys="true" keyProperty="id"       >
 		INSERT INTO pptpd_admin(USERNAME,PASSWORD,STATUS,USERTYPE,MEMO) VALUES (#{username},PASSWORD(#{password}),#{status},#{usertype},#{memo})
 	</insert>
 
@@ -21,8 +21,8 @@
 	</select>
 	
 	<!-- 检查插入管理员姓名的唯一性 -->
-	<select id="checkUserNameUnique" parameterType="string" resultType="int">
-		SELECT COUNT(*) FROM pptpd_admin TAB WHERE TAB.USERNAME=${username}
+	<select id="checkUserNameUnique" parameterType="PptpdAdmin" resultType="int">
+		SELECT COUNT(*) FROM pptpd_admin TAB WHERE TAB.USERNAME=#{username}
 	</select>
 	
 	<!-- 用于管理员登录(所有管理员) -->

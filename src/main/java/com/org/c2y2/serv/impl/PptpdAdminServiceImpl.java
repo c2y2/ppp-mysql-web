@@ -29,7 +29,7 @@ public class PptpdAdminServiceImpl extends AbstractService<PptpdAdmin> implement
 	 */
 	@Override
 	public void insertPptpdAdmin(PptpdAdmin pptpdAdmin) throws Exception {
-		String username = pptpdAdmin.getUsername()==null?null:pptpdAdmin.getUsername();
+		String username = (pptpdAdmin.getUsername()==null||pptpdAdmin.getUsername().equals(""))?null:pptpdAdmin.getUsername();
 		if(username!=null){
 			Integer flag = 	checkUserNameUnique(username);
 			if(flag == 0){

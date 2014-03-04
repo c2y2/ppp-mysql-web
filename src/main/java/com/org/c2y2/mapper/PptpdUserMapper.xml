@@ -4,14 +4,15 @@
 <mapper namespace="com.org.c2y2.mapper.PptpdUserMapper">
 	<!-- 添加 -->
 	<insert id="insert"   parameterType="PptpdUser"  useGeneratedKeys="true" keyProperty="id"       >
-		INSERT INTO PPTPD_USER(USERNAME,PASSWORD,STATUS,CLIENTIP,SERVERIP,STARTDATE,ENDDATE,MEMO) VALUES (#{username},#{password},#{status},#{clientip},#{serverip},#{startdate},#{enddate},#{memo})
+		INSERT INTO pptpd_user(MRGID,USERNAME,PASSWORD,STATUS,CLIENTIP,SERVERIP,STARTDATE,ENDDATE,MEMO) VALUES (#{mgrid},#{username},PASSWORD(#{password}),#{status},#{clientip},#{serverip},#{startdate},#{enddate},#{memo})
 	</insert>
 
 	<!-- 按条件查询多条（不分页） -->
 	<select id="findByEntity" parameterType="PptpdUser" resultType="PptpdUser">
-		SELECT TAB.ID,TAB.USERNAME,TAB.PASSWORD,TAB.STATUS,TAB.CLIENTIP,TAB.SERVERIP,TAB.STARTDATE,TAB.ENDDATE,TAB.MEMO
-			FROM PPTPD_USER TAB
+		SELECT TAB.ID,TAB.MGRID,TAB.USERNAME,TAB.PASSWORD,TAB.STATUS,TAB.CLIENTIP,TAB.SERVERIP,TAB.STARTDATE,TAB.ENDDATE,TAB.MEMO
+			FROM pptpd_user TAB
 			<where>
+				<if test="mgrid!=null">AND TAB.MGRID = #{mgrid}</if>
 				<if test="username!=null and username!='' ">AND TAB.USERNAME = #{username}</if>
 				<if test="status!=null">AND TAB.STATUS = #{status}</if>
 				<if test="usertype!=null">AND TAB.USERTYPE = #{usertype}</if>
@@ -25,19 +26,20 @@
 
 	<!-- 按ID查询一条 -->
 	<select id="findById" parameterType="int" resultType="PptpdUser">
-		SELECT TAB.ID,TAB.USERNAME,TAB.PASSWORD,TAB.STATUS,TAB.CLIENTIP,TAB.SERVERIP,TAB.STARTDATE,TAB.ENDDATE,TAB.MEMO
-			FROM PPTPD_USER TAB WHERE TAB.ID=#{id} ORDER BY TAB.ID DESC
+		SELECT TAB.ID,TAB.MGRID,TAB.USERNAME,TAB.PASSWORD,TAB.STATUS,TAB.CLIENTIP,TAB.SERVERIP,TAB.STARTDATE,TAB.ENDDATE,TAB.MEMO
+			FROM pptpd_user TAB WHERE TAB.ID=#{id} ORDER BY TAB.ID DESC
 	</select>
 
 	<!-- 按ID删除一条 -->
 	<delete id="delete" parameterType="int">
-		DELETE FROM PPTPD_USER WHERE ID=#{id}
+		DELETE FROM pptpd_user WHERE ID=#{id}
 	</delete>
 
 	<!-- 按ID修改 -->
 	<update id="update" parameterType="PptpdUser">
-		UPDATE PPTPD_USER TAB
+		UPDATE pptpd_user TAB
 		<set>
+			<if test="mgrid!=null">TAB.MGRID = #{mgrid},</if>
 			<if test="username!=null and username!='' ">TAB.USERNAME = #{username},</if>
 			<if test="status!=null">TAB.STATUS = #{status},</if>
 			<if test="usertype!=null">TAB.USERTYPE = #{usertype},</if>
@@ -52,9 +54,11 @@
 
 	<!-- 按条件查询多条（分页） -->
 	<select id="findByEntityOnPage" parameterType="PptpdUser" resultType="PptpdUser">
-		SELECT TAB.ID,TAB.USERNAME,TAB.PASSWORD,TAB.STATUS,TAB.CLIENTIP,TAB.SERVERIP,TAB.STARTDATE,TAB.ENDDATE,TAB.MEMO
-			FROM PPTPD_USER TAB
+		SELECT TAB.ID,TAB.MGRID,TAB.USERNAME,TAB.PASSWORD,TAB.STATUS,TAB.CLIENTIP,TAB.SERVERIP,TAB.STARTDATE,TAB.ENDDATE,TAB.MEMO
+			FROM pptpd_user TAB
+			LEFT JOIN pptpd_admin PA ON 
 			<where>
+				<if test="mgrid!=null">AND TAB.MGRID = #{mgrid}</if>
 				<if test="username!=null and username!='' ">AND TAB.USERNAME = #{username}</if>
 				<if test="status!=null">AND TAB.STATUS = #{status}</if>
 				<if test="usertype!=null">AND TAB.USERTYPE = #{usertype}</if>
@@ -70,8 +74,9 @@
 	<!-- 按条件查询总数（用于分页） -->
 	<select id="findByEntityOnPageCount" parameterType="PptpdUser" resultType="int">
 		SELECT COUNT(1) 
-			FROM PPTPD_USER TAB
+			FROM pptpd_user TAB
 			<where>
+				<if test="mgrid!=null">AND TAB.MGRID = #{mgrid}</if>
 				<if test="username!=null and username!='' ">AND TAB.USERNAME = #{username}</if>
 				<if test="status!=null">AND TAB.STATUS = #{status}</if>
 				<if test="usertype!=null">AND TAB.USERTYPE = #{usertype}</if>
