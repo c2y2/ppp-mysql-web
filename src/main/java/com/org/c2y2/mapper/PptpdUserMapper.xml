@@ -4,7 +4,7 @@
 <mapper namespace="com.org.c2y2.mapper.PptpdUserMapper">
 	<!-- 添加 -->
 	<insert id="insert"   parameterType="PptpdUser"  useGeneratedKeys="true" keyProperty="id"       >
-		INSERT INTO pptpd_user(MRGID,USERNAME,PASSWORD,STATUS,CLIENTIP,SERVERIP,STARTDATE,ENDDATE,MEMO) VALUES (#{mgrid},#{username},PASSWORD(#{password}),#{status},#{clientip},#{serverip},#{startdate},#{enddate},#{memo})
+		INSERT INTO pptpd_user(MGRID,USERNAME,PASSWORD,STATUS,CLIENTIP,SERVERIP,STARTDATE,ENDDATE,MEMO) VALUES (#{mgrid},#{username},PASSWORD(#{password}),#{status},#{clientip},#{serverip},#{startdate},#{enddate},#{memo})
 	</insert>
 
 	<!-- 按条件查询多条（不分页） -->
@@ -15,7 +15,6 @@
 				<if test="mgrid!=null">AND TAB.MGRID = #{mgrid}</if>
 				<if test="username!=null and username!='' ">AND TAB.USERNAME = #{username}</if>
 				<if test="status!=null">AND TAB.STATUS = #{status}</if>
-				<if test="usertype!=null">AND TAB.USERTYPE = #{usertype}</if>
 				<if test="clientip!=null">AND TAB.CLIENTIP = #{clientip}</if>
 				<if test="serverip!=null">AND TAB.SERVERIP = #{serverip}</if>
 				<if test="startdate!=null">AND TAB.STARTDATE = #{startdate}</if>
@@ -42,7 +41,6 @@
 			<if test="mgrid!=null">TAB.MGRID = #{mgrid},</if>
 			<if test="username!=null and username!='' ">TAB.USERNAME = #{username},</if>
 			<if test="status!=null">TAB.STATUS = #{status},</if>
-			<if test="usertype!=null">TAB.USERTYPE = #{usertype},</if>
 			<if test="clientip!=null">TAB.CLIENTIP = #{clientip},</if>
 			<if test="serverip!=null">TAB.SERVERIP = #{serverip},</if>
 			<if test="startdate!=null">TAB.STARTDATE = #{startdate},</if>
@@ -54,14 +52,13 @@
 
 	<!-- 按条件查询多条（分页） -->
 	<select id="findByEntityOnPage" parameterType="PptpdUser" resultType="PptpdUser">
-		SELECT TAB.ID,TAB.MGRID,TAB.USERNAME,TAB.PASSWORD,TAB.STATUS,TAB.CLIENTIP,TAB.SERVERIP,TAB.STARTDATE,TAB.ENDDATE,TAB.MEMO
+		SELECT TAB.ID,PA.USERNAME MGRUSERNAME,TAB.MGRID,TAB.USERNAME,TAB.PASSWORD,TAB.STATUS,TAB.CLIENTIP,TAB.SERVERIP,TAB.STARTDATE,TAB.ENDDATE,TAB.MEMO
 			FROM pptpd_user TAB
-			LEFT JOIN pptpd_admin PA ON 
+			LEFT JOIN pptpd_admin PA ON PA.ID=TAB.MGRID
 			<where>
 				<if test="mgrid!=null">AND TAB.MGRID = #{mgrid}</if>
 				<if test="username!=null and username!='' ">AND TAB.USERNAME = #{username}</if>
 				<if test="status!=null">AND TAB.STATUS = #{status}</if>
-				<if test="usertype!=null">AND TAB.USERTYPE = #{usertype}</if>
 				<if test="clientip!=null">AND TAB.CLIENTIP = #{clientip}</if>
 				<if test="serverip!=null">AND TAB.SERVERIP = #{serverip}</if>
 				<if test="startdate!=null">AND TAB.STARTDATE = #{startdate}</if>
@@ -75,11 +72,11 @@
 	<select id="findByEntityOnPageCount" parameterType="PptpdUser" resultType="int">
 		SELECT COUNT(1) 
 			FROM pptpd_user TAB
+			LEFT JOIN pptpd_admin PA ON PA.ID=TAB.MGRID
 			<where>
 				<if test="mgrid!=null">AND TAB.MGRID = #{mgrid}</if>
 				<if test="username!=null and username!='' ">AND TAB.USERNAME = #{username}</if>
 				<if test="status!=null">AND TAB.STATUS = #{status}</if>
-				<if test="usertype!=null">AND TAB.USERTYPE = #{usertype}</if>
 				<if test="clientip!=null">AND TAB.CLIENTIP = #{clientip}</if>
 				<if test="serverip!=null">AND TAB.SERVERIP = #{serverip}</if>
 				<if test="startdate!=null">AND TAB.STARTDATE = #{startdate}</if>

@@ -33,8 +33,8 @@ public class PptpdAdmin extends Entity{
 	 */
 	private String memo;
 	
-	public final static Integer supperAdmin=1;
-	public final static Integer generalAdmin=2;
+	public final static Integer supperAdmin=1;//超级管理员
+	public final static Integer generalAdmin=2;//普通管理员
 	
 	
 	public PptpdAdmin() {

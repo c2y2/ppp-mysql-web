@@ -13,7 +13,7 @@ public class PptpdUser extends Entity{
 	/**
 	 * 管理员id
 	 */
-	private Integer mrgid;
+	private Integer mgrid;
 	/**
 	 * 用户姓名
 	 */
@@ -51,9 +51,84 @@ public class PptpdUser extends Entity{
 	 */
 	private String memo;
 	
-	
-	
-	
+	/**
+	 * 管理名称
+	 */
+	private String mgrusername;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public Integer getMgrid() {
+		return mgrid;
+	}
+
+	public void setMgrid(Integer mgrid) {
+		this.mgrid = mgrid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public String getClientip() {
+		return clientip;
+	}
+
+	public void setClientip(String clientip) {
+		this.clientip = clientip;
+	}
+
+	public String getServerip() {
+		return serverip;
+	}
+
+	public void setServerip(String serverip) {
+		this.serverip = serverip;
+	}
+
+	public Date getStartdate() {
+		return startdate;
+	}
+
+	public void setStartdate(Date startdate) {
+		this.startdate = startdate;
+	}
+
+	public Date getEnddate() {
+		return enddate;
+	}
+
+	public void setEnddate(Date enddate) {
+		this.enddate = enddate;
+	}
+
 	public Integer getCount() {
 		return count;
 	}
@@ -70,65 +145,11 @@ public class PptpdUser extends Entity{
 		this.memo = memo;
 	}
 
-	public Integer getMrgid() {
-		return mrgid;
+	public String getMgrusername() {
+		return mgrusername;
 	}
 
-	public void setMrgid(Integer mrgid) {
-		this.mrgid = mrgid;
+	public void setMgrusername(String mgrusername) {
+		this.mgrusername = mgrusername;
 	}
-
-	public PptpdUser() {
-		super();
-	}
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public Integer getStatus() {
-		return status;
-	}
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-	public String getClientip() {
-		return clientip;
-	}
-	public void setClientip(String clientip) {
-		this.clientip = clientip;
-	}
-	public String getServerip() {
-		return serverip;
-	}
-	public void setServerip(String serverip) {
-		this.serverip = serverip;
-	}
-	public Date getStartdate() {
-		return startdate;
-	}
-	public void setStartdate(Date startdate) {
-		this.startdate = startdate;
-	}
-	public Date getEnddate() {
-		return enddate;
-	}
-	public void setEnddate(Date enddate) {
-		this.enddate = enddate;
-	}
-	
 }

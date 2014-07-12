@@ -2,14 +2,6 @@ package com.org.c2y2.base;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 
- * @company Jinxin Computer Corp.
- * @author Chenbing
- * @email wwwchenbing@gmail.com
- * @description 
- * @date 2012-7-20
- */
 public interface IMapper<T extends Entity> {
 	/**
 	 * 添加

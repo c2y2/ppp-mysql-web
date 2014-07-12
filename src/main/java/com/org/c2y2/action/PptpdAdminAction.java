@@ -118,6 +118,7 @@ public class PptpdAdminAction extends BaseAction {
 		}
 	}
 	
+	
 	/*--------------------------set/get--------------------------------------*/
 	public PptpdAdmin getPptpdAdmin() {
 		return pptpdAdmin;
